@@ -113,7 +113,7 @@ class RaspberrypiPlatform(PlatformBase):
                 self.packages["toolchain-rp2040-earlephilhower"]["optional"] = True
                 self.packages.pop("toolchain-rp2040-earlephilhower", None)
             elif build_core == "earlephilhower":
-                self.frameworks["arduino"]["package"] = "framework-arduinopico"
+                self.frameworks["arduino"]["package"] = "framework-arduinopico-mts"
                 self.packages["framework-arduino-mbed"]["optional"] = True
                 self.packages.pop("toolchain-gccarmnoneeabi", None)
                 self.packages["toolchain-rp2040-earlephilhower"]["optional"] = False

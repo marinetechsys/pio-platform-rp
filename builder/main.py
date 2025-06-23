@@ -312,7 +312,7 @@ env.Append(
         BinToSignedBin=Builder(
             action=env.VerboseAction(" ".join([
                 '"$PYTHONEXE" "%s"' % join(
-                    platform.get_package_dir("framework-arduinopico") or "",
+                    platform.get_package_dir("framework-arduinopico-mts") or "",
                     "tools", "signing.py"),
                 "--mode",
                 "sign",
@@ -357,7 +357,7 @@ if is_arduino_pico_build:
         env.Prepend(CCFLAGS=['-I"%s"' % join("$BUILD_DIR", "core")])
         env.Execute(" ".join([
                 '"$PYTHONEXE" "%s"' % join(
-                    platform.get_package_dir("framework-arduinopico"), "tools", "signing.py"),
+                    platform.get_package_dir("framework-arduinopico-mts"), "tools", "signing.py"),
                 "--mode", "header",
                 "--publickey", '"%s"' % join("$PROJECT_SRC_DIR", "public.key"),
                 "--out", '"%s"' % join("$BUILD_DIR", "core", "Updater_Signing.h")
@@ -381,7 +381,7 @@ else:
         AlwaysBuild(target_firm)
     else:
         target_firm = env.ElfToBin(join("$BUILD_DIR", "${PROGNAME}"), target_elf)
-        signing_script_exists = exists(join(platform.get_package_dir("framework-arduinopico") or "",
+        signing_script_exists = exists(join(platform.get_package_dir("framework-arduinopico-mts") or "",
             "tools", "signing.py"))
         if is_arduino_pico_build and signing_script_exists:
             target_signed_bin = env.BinToSignedBin(join("$BUILD_DIR", "${PROGNAME}"), target_firm)
@@ -539,7 +539,7 @@ elif upload_protocol == "espota":
             "espressif8266.html#over-the-air-ota-update\n")
     env.Replace(
         UPLOADER=join(
-            platform.get_package_dir("framework-arduinopico") or "",
+            platform.get_package_dir("framework-arduinopico-mts") or "",
             "tools", "espota.py"),
         UPLOADERFLAGS=["--debug", "--progress", "-i", "$UPLOAD_PORT", "-p", "2040"],
         UPLOADCMD='"$PYTHONEXE" "$UPLOADER" $UPLOADERFLAGS -f $SOURCE'

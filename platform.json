@@ -47,7 +47,7 @@
       "owner": "platformio",
       "version": "~4.3.1"
     },
-    "framework-arduinopico": {
+    "framework-arduinopico-mts": {
       "type": "framework",
       "optional": true,
       "owner": "marinetechsys",
